@@ -1,1 +1,68 @@
-document.getElementsByTagName("span")[0].innerHTML="Me and a corner of an abstract painting. Can you see it???";let getEnder=function(e){let n=parseInt(e.toDateString().split(" ")[2]);return n>10&&n<14?"th":1==(n%=10)?"st":2===n?"nd":3===n?"rd":"th"},objToday=new Date,weekday=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],dayOfWeek=weekday[objToday.getDay()],domEnder=getEnder(objToday);dayOfMonth=10>objToday.getDate()?"0"+objToday.getDate()+domEnder:objToday.getDate()+domEnder,today=dayOfWeek+", "+dayOfMonth+" "+(curMonth=(months=["January","February","March","April","May","June","July","August","September","October","November","December"])[objToday.getMonth()])+", "+(curYear=objToday.getFullYear()),document.querySelector("#clock").innerHTML=today;const hour_hand=document.querySelector("[real-hour]"),min_hand=document.querySelector("[real-minute]"),sec_hand=document.querySelector("[real-second]"),set_rotation=function(e,n){e.style.setProperty("--rot",360*n)},adjust_clock=function(){let e=new Date,n=e.getSeconds()/60,t=(n+e.getMinutes())/60,a=(t+e.getHours())/12;set_rotation(sec_hand,n),set_rotation(min_hand,t),set_rotation(hour_hand,a)};setInterval(adjust_clock,1e3),adjust_clock();const data=[{name:"Tướng về hưu – Truyện ngắn, t\xe1c giả Nguyễn Huy Thiệp, vanvn.vn",link:"https://vanvn.vn/tuong-ve-huu-truyen-ngan-nguyen-huy-thiep",img_src:"tvh.jpg",comment:'"Truyện ngắn hay \xedt người đọc&#128527..."'},{name:"Anh Tin M\xecnh Đ\xe3 Cho Nhau 1 Kỉ Niệm(Prod.by Pharreal Phương & Dsmall), Zing MP3",link:"https://zingmp3.vn/album/Ngay-Cuoi-Team-Yanbi-Yen-Le-Vong-2-Hoa-Am-Anh-Sang-2017-Yen-Le-Yanbi-Pharreal-Phuong-DJ-DSmall/ZOZ79WB7.html",img_src:"atmdcn1kn.jpg",comment:'"Nhạc hay \xedt người biết đến&#128528!!"'},{name:"Buổi chiều ngồi h\xe1t - Tản văn, t\xe1c giả Nguyễn Việt H\xe0, NXB Trẻ",link:"https://www.nxbtre.com.vn/sach/buoi-chieu-ngoi-hat-13388.html",img_src:"bcnh.jpg",comment:'"S\xe1ch hay \xedt(hoặc kh\xf4ng \xedt lắm) người đọc&#128524..."'},{name:"Happy Now - Kygo(ft. Sandro Cavazza), genius.com",link:"https://genius.com/Kygo-happy-now-lyrics",img_src:"happynow.jpg",comment:'"Nhạc hay nhưng nhiều người biết hơn&#128527!!"'}];let curr_index=0,isUntoggled=!0;function toggle_transform(){link_elements[0].classList.toggle("link-transform",isUntoggled),link_elements[1].classList.toggle("link-transform",isUntoggled),isUntoggled&&(child_link_elements_0[1].href=data[curr_index].link,child_link_elements_1[1].href=data[curr_index+1].link,child_link_elements_0[1].innerHTML=data[curr_index].name,child_link_elements_1[1].innerHTML=data[curr_index+1].name,child_link_elements_0[0].src=data[curr_index].img_src,child_link_elements_1[0].src=data[curr_index+1].img_src,comments_elements[0].innerHTML=data[curr_index].comment,comments_elements[1].innerHTML=data[curr_index+1].comment,curr_index=curr_index<data.length-3?curr_index+2:0),isUntoggled=!isUntoggled}const link_elements=document.querySelectorAll(".link"),comments_elements=document.querySelectorAll(".comments > i"),child_link_elements_0=link_elements[0].children,child_link_elements_1=link_elements[1].children,toggle_interval=setInterval(toggle_transform,2e3);
+document.getElementsByTagName("span")[0].innerHTML =
+  "Me and a corner of an abstract painting.";
+let getEnder = function (e) {
+    let n = parseInt(e.toDateString().split(" ")[2]);
+    return n > 10 && n < 14
+      ? "th"
+      : 1 == (n %= 10)
+      ? "st"
+      : 2 === n
+      ? "nd"
+      : 3 === n
+      ? "rd"
+      : "th";
+  },
+  objToday = new Date(),
+  weekday = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ],
+  dayOfWeek = weekday[objToday.getDay()],
+  domEnder = getEnder(objToday);
+(dayOfMonth =
+  10 > objToday.getDate()
+    ? "0" + objToday.getDate() + domEnder
+    : objToday.getDate() + domEnder),
+  (today =
+    dayOfWeek +
+    ", " +
+    dayOfMonth +
+    " " +
+    (curMonth = (months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ])[objToday.getMonth()]) +
+    ", " +
+    (curYear = objToday.getFullYear())),
+  (document.querySelector("#clock").innerHTML = today);
+const hour_hand = document.querySelector("[real-hour]"),
+  min_hand = document.querySelector("[real-minute]"),
+  sec_hand = document.querySelector("[real-second]"),
+  set_rotation = function (e, n) {
+    e.style.setProperty("--rot", 360 * n);
+  },
+  adjust_clock = function () {
+    let e = new Date(),
+      n = e.getSeconds() / 60,
+      t = (n + e.getMinutes()) / 60,
+      a = (t + e.getHours()) / 12;
+    set_rotation(sec_hand, n),
+      set_rotation(min_hand, t),
+      set_rotation(hour_hand, a);
+  };
+setInterval(adjust_clock, 1e3), adjust_clock();
