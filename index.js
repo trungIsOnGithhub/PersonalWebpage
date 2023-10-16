@@ -1,5 +1,5 @@
-document.getElementsByTagName("span")[0].innerHTML =
-  "Me and a corner of an abstract painting.";
+document.getElementById("intro1").innerHTML =
+  "me and corner of an abstract painting";
 let getEnder = function (e) {
     let n = parseInt(e.toDateString().split(" ")[2]);
     return n > 10 && n < 14
@@ -50,6 +50,45 @@ let getEnder = function (e) {
     ", " +
     (curYear = objToday.getFullYear())),
   (document.querySelector("#clock").innerHTML = today);
+let baseurl='https://khodattenqua.azurewebsites.net/api';
+const thought=document.getElementById('thought');
+thought.addEventListener('keyup', function () {
+  if (this.value!=undefined && this.value.toString().length>=96) {
+    this.value=this.value.slice(0,96);
+  }
+});
+let out=document.getElementById('out');
+function end(success){
+  thought.value = '';
+  if(success){
+    out.style.color="green";
+    out.innerText="Message Has Been Sent!";
+    thought.placeholder = "Message Sent!"
+    thought.disabled = true;
+  }else{
+    out.style.color="red";
+    out.innerText="Error Sending Message!";
+  }
+  setTimeout(function(){
+    out.style.color="grey";
+    out.innerText="Write Me Something";
+  }, 3000);
+}
+document.getElementById("sbtn").onclick=function(){
+  let content=thought.value;
+  if (content!=undefined && content.toString().length>=96) {
+    content=content.slice(0,96);
+  }
+  content.replace('"','.');content.replace('\'','.');
+  fetch(baseurl+'/HttpTrigger1', {
+    method: "POST",
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({'content':content})
+}).then(res => end(true)).catch(err => end(false));
+}
 const hour_hand = document.querySelector("[real-hour]"),
   min_hand = document.querySelector("[real-minute]"),
   sec_hand = document.querySelector("[real-second]"),
